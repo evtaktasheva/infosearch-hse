@@ -1,2 +1,2 @@
 pymorphy2
-spacy
+spacy==3.1.0
