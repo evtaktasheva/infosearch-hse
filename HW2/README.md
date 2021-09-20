@@ -1,0 +1,18 @@
+## Hw2
+
+### How to use
+1. Clone the repo by doing
+```
+git clone https://github.com/evtaktasheva/infosearch-hse
+```
+
+2. Change working directory
+```
+cd infosearch-hse/HW2/
+```
+
+3. `!` Upload the 'friends-data' directory
+4. Run 'main.py'
+```
+python main.py
+```
