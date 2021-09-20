@@ -57,8 +57,7 @@ def read_files(path: str) -> Dict[str, str]:
                     continue
                 file_path = os.path.join(dir_path, file)
                 documents[file] = get_file_content(file_path, nlp)
-                break
-    # assert len(documents) == 165
+    assert len(documents) == 165
 
     return documents
 
