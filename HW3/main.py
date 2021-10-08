@@ -1,9 +1,9 @@
-import numpy as np
 import json
+import numpy as np
+import pymorphy2
 from nltk.corpus import stopwords
 from nltk.tokenize import wordpunct_tokenize
 from scipy import sparse
-import pymorphy2
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from tqdm.auto import tqdm
 from typing import Dict, List, Tuple, Union
@@ -66,7 +66,7 @@ def read_files(path: str) -> Tuple[List[str], np.array]:
     """
     # load json file
     with open(path, 'r') as f:
-        corpus = list(f)[:50000] # долго ждать...
+        corpus = list(f)[:50000]
     # extract contents
     documents, original = get_corpora_content(corpus)
     return documents, original
@@ -122,10 +122,10 @@ def calculate_bm25(corpus: List[str]) -> Tuple[sparse.csr_matrix,
     # # но вообще так тоже работает без перехода из спарсованных матриц,
     # # можно ли так делать?
     # # numerator part of the BM25 formula
-    # numerator = tf.multiply(idf) * (k+1)  # sparse coo matrix
+    # numerator = tf.multiply(idf) * (k+1)
     # assert type(numerator) is sparse.coo_matrix
     # numerator = numerator.tocsr()
-    #
+    # 
     # # denumerator part of the BM25 formula
     # denumerator = sparse_matrix_add(tf, constant)
     # assert type(denumerator) is sparse.csr_matrix
