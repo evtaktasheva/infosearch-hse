@@ -1,3 +1,5 @@
+import numpy as np
+import pymorphy2
 import torch
 from abc import abstractmethod
 from gensim.models import KeyedVectors
@@ -7,8 +9,6 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from transformers import AutoTokenizer, AutoModel
 from utilities import *
-import numpy as np
-import pymorphy2
 from tqdm.auto import tqdm
 from typing import Tuple, Optional, Union
 
@@ -186,7 +186,7 @@ class FastTextCorpora(Index):
         vector = np.zeros((300,))
         for word in text:
             vector += model[word]
-        return np.divide(vector, len(text))
+        return np.divide(vector, len(text)) if (vector != 0).any() else vector
 
     def get_index(self) -> Tuple[np.array, FastTextKeyedVectors]:
         """
@@ -195,7 +195,8 @@ class FastTextCorpora(Index):
         """
         model_path = 'araneum_none_fasttextcbow_300_5_2018.model'
         model = KeyedVectors.load(model_path)
-        index = np.array([self.fasttext_pool(text, model) for text in self.data])
+        index = [self.fasttext_pool(text, model) for text in self.data]
+        index = np.array(index)
         return index, model
 
     def get_query_matrix(self,
