@@ -45,5 +45,5 @@ python run task1.py
 Run **task2.py**:
 
 ```
-python task2.py
+python run task2.py
 ```
