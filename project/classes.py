@@ -31,9 +31,9 @@ class Index(object):
         Create index
         :return: index and vectorizer
         """
-        filepath = f'corpus/{self.vec}_{{}}_{self.stype}.pickle'
-        path = os.path.join(os.curdir, filepath)
-        answer_path = os.path.join(os.curdir, 'corpus/answers.pickle')
+        filepath = f'project/corpus/{self.vec}_{{}}_{self.stype}.pickle'
+        path = os.path.join(os.getcwd(), filepath)
+        answer_path = os.path.join(os.getcwd(), 'project/corpus/answers.pickle')
 
         with open(path.format('features'), 'rb') as f:
             index = pickle.load(f)
