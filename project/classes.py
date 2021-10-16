@@ -24,6 +24,7 @@ class Index(object):
         """
         self.vec = vec
         self.stype = stype
+        st.write(os.listdir(os.path.join(os.getcwd(), 'project/corpus')))
         self.index, self.vectorizer, self.answers = self.get_index()
 
     def get_index(self) -> tuple:
@@ -31,15 +32,17 @@ class Index(object):
         Create index
         :return: index and vectorizer
         """
+        
         filepath = f'project/corpus/{self.vec}_{{}}_{self.stype}.pickle'
         path = os.path.join(os.getcwd(), filepath)
         answer_path = os.path.join(os.getcwd(), 'project/corpus/answers.pickle')
+        
+        with open(answer_path, 'rb') as f:
+            answers = pickle.load(f)
         with open(path.format('features'), 'rb') as f:
             index = pickle.load(f)
         with open(path.format('vectorizer'), 'rb') as f:
             vectorizer = pickle.load(f)
-        with open(answer_path, 'rb') as f:
-            answers = pickle.load(f)
         return index, vectorizer, answers
 
     @abstractmethod
