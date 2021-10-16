@@ -5,7 +5,7 @@ import os
 
 
 def main():
-    st.write(os.getcwd())
+    st.write(os.listdir(os.path.join(os.getcwd(), project/corpus/)))
     st.markdown("<h1 style='text-align: center; font-size: 700%'>✨🔮✨</h1>",
                 unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: center;'>❤️ Я могу ответить на твои "
