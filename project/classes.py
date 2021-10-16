@@ -24,7 +24,6 @@ class Index(object):
         """
         self.vec = vec
         self.stype = stype
-        st.write(os.listdir(os.path.join(os.getcwd(), 'project/corpus')))
         self.index, self.vectorizer, self.answers = self.get_index()
 
     def get_index(self) -> tuple:
