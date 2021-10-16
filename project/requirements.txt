@@ -1,5 +1,6 @@
+torch
 pymorphy2
 streamlit
 numpy
 scikit-learn
-torch
+gensim
