@@ -1,9 +1,11 @@
-from classes import *
 import streamlit as st
+import nltk
+from classes import *
 from datetime import datetime as time
 
 
 def main():
+    nltk.download('stopwords')
     st.markdown("<h1 style='text-align: center; font-size: 700%'>✨🔮✨</h1>",
                 unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: center;'>❤️ Я могу ответить на твои "
