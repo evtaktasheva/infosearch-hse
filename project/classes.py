@@ -13,7 +13,7 @@ import numpy as np
 import pymorphy2
 from tqdm.auto import tqdm
 from typing import Tuple, Optional, Union
-import streamlit as st
+
 
 class Index(object):
     def __init__(self, stype: str, vec: str):
@@ -24,9 +24,6 @@ class Index(object):
         """
         self.vec = vec
         self.stype = stype
-        filepath = f'project/corpus/{self.vec}_{{}}_{self.stype}.pickle'
-        path = os.path.join(os.getcwd(), filepath)
-        st.write(path)
         self.index, self.vectorizer, self.answers = self.get_index()
 
     def get_index(self) -> tuple:
@@ -37,7 +34,6 @@ class Index(object):
         filepath = f'project/corpus/{self.vec}_{{}}_{self.stype}.pickle'
         path = os.path.join(os.getcwd(), filepath)
         answer_path = os.path.join(os.getcwd(), 'project/corpus/answers.pickle')
-
         with open(path.format('features'), 'rb') as f:
             index = pickle.load(f)
         with open(path.format('vectorizer'), 'rb') as f:
