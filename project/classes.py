@@ -30,11 +30,11 @@ class Index(object):
         Create index
         :return: index and vectorizer
         """
-        with open(f'corpus/{self.vec}_features_{self.stype}.pickle', 'rb') as f:
+        with open(f'project/corpus/{self.vec}_features_{self.stype}.pickle', 'rb') as f:
             index = pickle.load(f)
-        with open(f'corpus/{self.vec}_vectorizer_{self.stype}.pickle', 'rb') as f:
+        with open(f'project/corpus/{self.vec}_vectorizer_{self.stype}.pickle', 'rb') as f:
             vectorizer = pickle.load(f)
-        with open('corpus/answers.pickle', 'rb') as f:
+        with open('project/corpus/answers.pickle', 'rb') as f:
             answers = pickle.load(f)
         return index, vectorizer, answers
 
