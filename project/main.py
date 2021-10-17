@@ -6,11 +6,6 @@ from datetime import datetime as time
 
 
 def main():
-    os.system('wget https://rusvectores.org/static/models/rusvectores4/fasttext/araneum_none_fasttextcbow_300_5_2018.tgz')
-    os.system('tar xzf araneum_none_fasttextcbow_300_5_2018.tgz')
-    vectorizer = KeyedVectors.load(
-            'araneum_none_fasttextcbow_300_5_2018.model')
-    st.write('YAY')
     nltk.download('stopwords')
     st.markdown("<h1 style='text-align: center; font-size: 700%'>✨🔮✨</h1>",
                 unsafe_allow_html=True)
