@@ -1,7 +1,6 @@
 from classes import *
 import streamlit as st
 from datetime import datetime as time
-nltk.download('stopwords')
 
 
 @st.cache(suppress_st_warning=True, allow_output_mutation=True)
