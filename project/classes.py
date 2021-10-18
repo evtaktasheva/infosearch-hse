@@ -2,18 +2,13 @@ import os
 import torch
 import pickle
 from abc import abstractmethod
-from gensim.models import KeyedVectors
 from gensim.models.keyedvectors import FastTextKeyedVectors
 from scipy import sparse
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from transformers import AutoTokenizer, AutoModel
 from utilities import *
 import numpy as np
 import pymorphy2
-from tqdm.auto import tqdm
-from typing import Tuple, Optional, Union
-import streamlit as st
+from typing import Union
 
 
 class Index(object):
