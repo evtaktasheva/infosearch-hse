@@ -13,6 +13,7 @@ import numpy as np
 import pymorphy2
 from tqdm.auto import tqdm
 from typing import Tuple, Optional, Union
+import streamlit as st
 
 
 class Index(object):
@@ -31,17 +32,15 @@ class Index(object):
         Create index
         :return: index and vectorizer
         """
-        
         filepath = f'project/corpus/{self.vec}_{{}}_{self.stype}.pickle'
         path = os.path.join(os.getcwd(), filepath)
         answer_path = os.path.join(os.getcwd(), 'project/corpus/answers.pickle')
-        
-        with open(answer_path, 'rb') as f:
-            answers = pickle.load(f)
         with open(path.format('features'), 'rb') as f:
             index = pickle.load(f)
         with open(path.format('vectorizer'), 'rb') as f:
             vectorizer = pickle.load(f)
+        with open(answer_path, 'rb') as f:
+            answers = pickle.load(f)
         return index, vectorizer, answers
 
     @abstractmethod
@@ -144,6 +143,23 @@ class FastTextCorpora(Index):
         """
         super().__init__(stype, vec)
 
+    def get_index(self) -> tuple:
+        """
+        Create index
+        :return: index and vectorizer
+        """
+        filepath = f'project/corpus/{self.vec}_features_{self.stype}.pickle'
+        path = os.path.join(os.getcwd(), filepath)
+        model_path = f'project/corpus/{self.vec}_vectorizer.pickle'
+        answer_path = os.path.join(os.getcwd(), 'project/corpus/answers.pickle')
+        with open(path, 'rb') as f:
+            index = pickle.load(f)
+        with open(model_path, 'rb') as f:
+            vectorizer = pickle.load(f)
+        with open(answer_path, 'rb') as f:
+            answers = pickle.load(f)
+        return index, vectorizer, answers
+
     @staticmethod
     def fasttext_pool(text: str, model: FastTextKeyedVectors) -> np.array:
         """
@@ -201,6 +217,23 @@ class BertCorpus(Index):
         """
         super().__init__(stype, vec)
         self.tokenizer, self.model = self.vectorizer
+
+    def get_index(self) -> tuple:
+        """
+        Create index
+        :return: index and vectorizer
+        """
+        filepath = f'project/corpus/{self.vec}_features_{self.stype}.pickle'
+        path = os.path.join(os.getcwd(), filepath)
+        model_path = f'project/corpus/{self.vec}_vectorizer.pickle'
+        answer_path = os.path.join(os.getcwd(), 'project/corpus/answers.pickle')
+        with open(path, 'rb') as f:
+            index = pickle.load(f)
+        with open(model_path, 'rb') as f:
+            vectorizer = pickle.load(f)
+        with open(answer_path, 'rb') as f:
+            answers = pickle.load(f)
+        return index, vectorizer, answers
 
     def get_query_matrix(self, data: Union[list, np.array]) -> np.array:
         """
