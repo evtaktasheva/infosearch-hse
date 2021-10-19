@@ -33,7 +33,7 @@ def choose_vectorizer(vec, stype, models):
     elif vec == 'Okapi BM25':
         if stype == 'Вопросы':
             return bm25_q
-        return bm25_q
+        return bm25_a
     elif vec == 'FastText':
         if stype == 'Вопросы':
             return ft_q
